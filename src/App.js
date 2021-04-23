@@ -1,5 +1,5 @@
 import Parser from 'rss-parser';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import './App.css';
 
@@ -7,7 +7,9 @@ function App() {
   let parser = new Parser();
   const [post, setPost] = useState([]);
 
-  rss();
+  useEffect(() => {
+    rss();
+  }, []);
 
   async function rss() {
     await parser
