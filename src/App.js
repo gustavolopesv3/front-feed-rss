@@ -1,5 +1,5 @@
 import Parser from "rss-parser";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import "./App.css";
 
@@ -7,9 +7,7 @@ function App() {
   let parser = new Parser();
   const [post, setPost] = useState([]);
 
-  useEffect(() => {
-    rss();
-  }, []);
+  rss();
 
   async function rss() {
     await parser
@@ -18,11 +16,10 @@ function App() {
         setPost(res.items);
       });
   }
-  console.log(post);
+
   return post.map((i) => {
-    console.log(i.title);
     return (
-      <div className="container">
+      <div key={i.guid} className="container">
         <div className="card">
           <img src={i.guid} alt="" />
           <div>
